@@ -1,0 +1,14 @@
+{
+	"twitter" :
+	{
+	    "consumer_key": "d0HslRdVFz85pO2xSYtpoXnrB",
+	    "consumer_secret": "LKinjv44AD5izx1MD3s4yMDsQdpYpagKVoImDfYmzGJuaCoiVn",
+	    "access_token": "2834817362-NhifzFMY8uPH8WF3MHqpuM87IbeJRuM5AsFcHWG",
+	    "access_token_secret": "3Uk1JD1JrHGohyZ4J6EBRkJrg57DVuupJiPtsPtRMXxz5",
+	    "timeout" : 6000
+	},
+	"google": 
+	{
+		"api_key": "AIzaSyADcVtUg-MWSSQRNWjAmaqrQBGqhN9SH8k"
+	}
+}
