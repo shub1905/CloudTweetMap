@@ -15,8 +15,17 @@ var T = new Twit({
     timeout_ms: config.timeout
 })
 
-var stream = T.stream('statuses/sample');
+var stream_simple = T.stream('statuses/sample');
+var stream = T.stream('statuses/filter', { track: '#MakeAmericaGreatAgain' });
 
-stream.on('tweet', function (tweet) {
-  es.index(tweet);
+stream.on('tweet', function(tweet, error) {
+	console.log(error);
+	console.log('filter');
+    es.index(tweet);
+});
+
+stream_simple.on('tweet', function(tweet, error) {
+	console.log(error);
+    console.log('simple');
+    es.index(tweet);
 });

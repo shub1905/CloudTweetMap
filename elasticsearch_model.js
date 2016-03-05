@@ -20,6 +20,7 @@ function search(query) {
 function index_es(body_) {
     client.index({
         index: index,
+        id: get_id(body_),
         type: type,
         body: body_
     }, function(error, response) {
@@ -27,17 +28,9 @@ function index_es(body_) {
     });
 }
 
-// body = {
-//     title: 'Test',
-//     tags: ['y', 'z'],
-//     published: true,
-// }
-
-// for (var i = 0; i < 10; i++) {
-//     body_temp = body;
-//     body_temp.title = body_temp.title + i.toString();
-//     index_es(body);
-// }
+function get_id(tweet) {
+    return tweet.id;
+}
 
 module.exports.search = search;
 module.exports.index = index_es;
