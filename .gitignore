@@ -34,3 +34,6 @@ node_modules
 
 # config secret keys
 config.json
+
+# Mac Meta Files
+.DS_Store

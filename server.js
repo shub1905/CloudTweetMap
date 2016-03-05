@@ -1,20 +1,24 @@
-var http = require('http');
+var express = require('express');
+var app = express();
 
-const PORT = 8080;
+app.use(express.static('public'));
 
-function handleRequest(request, response){
-    try {
-        //log the request on console
-        console.log(request.url);
-        //Disptach
-        dispatcher.dispatch(request, response);
-    } catch(err) {
-        console.log(err);
-    }
-}
+app.get('/', function(req, res) {
+    res.send('Hello World!');
+});
 
-var server = http.createServer(handleRequest);
+app.post('/', function(req, res) {
+    res.send('Got a POST request');
+});
 
-server.listen(PORT, function() {
-    console.log("Server listening on: http://localhost:%s", PORT);
+app.put('/user', function(req, res) {
+    res.send('Got a PUT request at /user');
+});
+
+app.delete('/user', function(req, res) {
+    res.send('Got a DELETE request at /user');
+});
+
+app.listen(3000, function() {
+    console.log('Example app listening on port 3000!');
 });
