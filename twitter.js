@@ -1,5 +1,6 @@
 var Twit = require('twit');
 var fs = require('fs');
+var http = require('http');
 
 var config_raw = fs.readFileSync('config.json');
 var config = JSON.parse(config_raw).twitter;
