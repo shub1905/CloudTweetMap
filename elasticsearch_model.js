@@ -37,4 +37,4 @@ for (var i = 0; i < 10; i++) {
     index_es(body);
 }
 
-search('*');
+module.exports.search = search;
