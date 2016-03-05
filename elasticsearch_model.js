@@ -22,19 +22,24 @@ function index_es(body_) {
         index: index,
         type: type,
         body: body_
-    }, function(error, response) {});
+    }, function(error, response) {
+        console.log(error);
+    });
 }
 
-body = {
-    title: 'Test',
-    tags: ['y', 'z'],
-    published: true,
-}
+// body = {
+//     title: 'Test',
+//     tags: ['y', 'z'],
+//     published: true,
+// }
 
-for (var i = 0; i < 10; i++) {
-	body_temp = body;
-	body_temp.title = body_temp.title + i.toString();
-    index_es(body);
-}
+// for (var i = 0; i < 10; i++) {
+//     body_temp = body;
+//     body_temp.title = body_temp.title + i.toString();
+//     index_es(body);
+// }
 
 module.exports.search = search;
+module.exports.index = index_es;
+
+search('*');

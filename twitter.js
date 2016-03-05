@@ -15,10 +15,8 @@ var T = new Twit({
     timeout_ms: config.timeout
 })
 
-// var stream = T.stream('statuses/sample');
+var stream = T.stream('statuses/sample');
 
-// stream.on('tweet', function (tweet) {
-//   console.log(tweet)
-// })
-
-es.search('*');
+stream.on('tweet', function (tweet) {
+  es.index(tweet);
+});
