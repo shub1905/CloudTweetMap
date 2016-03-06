@@ -41,39 +41,8 @@ heatmap = new google.maps.visualization.HeatmapLayer({
         marker.setMap(null);
       },20000);*/
 
-if(io !== undefined) {
-    console.log("\nhi begin");
-    // Storage for WebSocket connections
-    var socket = io.connect('/');
-    //var use = socket.socket;
-    // This listens on the "twitter-steam" channel and data is 
-    // received everytime a new tweet is receieved.
-    /*use.on('connect_failed', function(){
-    console.log('Connection Failed');
-    });*/
-    socket.on('twitter-stream', function(data){
-            //Add tweet to the heat map array.
-            var category1= data.cat;
-            var geo= data.geo;
-            console.log('got new Data'+  category1 +' '+category);
-            if (category1 == category){
-                console.log(data.geo);
-                var tweetloc= new google.maps.LatLng( geo["lat"],geo["lng"]);
-                var marker = new google.maps.Marker({
-                position: data.geo,
-                map: map,
-            });
-            //pointArray.push(tweetloc);  
-            //google.maps.event.addDomListener(window, 'load', heatMapInitialize());
-            }
-          //Flash a dot onto the map quickly
-          //var image = "css/small-dot-icon.png";
 
-
-    });
-};
-
-category="sports";
+category="elections";
 function temp(category) { 
     
 //pointArray=[]
@@ -88,33 +57,12 @@ $.get("/api/getAllTweets/"+category,function(data, status){
     }
         google.maps.event.addDomListener(window, 'load', heatMapInitialize());
 });
-        //console.log(pointArray);
-/*var trends=[]
-var sentiment=[]
-var mydiv=document.getElementById('trending');
-var newcontent = document.createElement('div');
-mydiv.innerHTML='';
-$.get("/api/getTrends/"+category,function(data,status){
-    console.log(data);
-      for (i in data){
-          console.log(data[i]);
-        trends[i]= data[i]['trend'];
-        sentiment[i]=data[i]['senti'];
-        if (trends[i].length<2) continue;
-        newcontent.innerHTML = "<b>"+trends[i]+"</b><br/><i> "+sentiment[i]+"</i><br><hr>";
-        while (newcontent.firstChild) {
-        mydiv.appendChild(newcontent.firstChild);
-    }
-}
-
-
-    
-
-});
-    
-*/    
 
 
 };
+
+
+
+
 
 
