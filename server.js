@@ -5,31 +5,33 @@ var es = require('./elasticsearch_model');
 
 app.use(express.static('public'));
 var hasht = ['VoteTrump','MakeAmericaGreatAgain','Trump2016'];
+var hashtl = ['MakeDonaldDrumpfAgain','DonaldDrumpf','neverTrump'];
 var hashb = ['FeelTheBurn', 'Bernie2016'];
 var hashh = ['Hilary2016', 'IAmWithHer'];
 
 app.get('/api/getAllTweets/hilary', function(req, res) {
-    var data = es.search(hashh);
+    var data = es.search(hashh, res);
     console.log('hilary');
-    res.send(data);
 });
 
 app.get('/api/getAllTweets/bernie', function(req, res) {
-    var data = es.search(hashb);
+    var data = es.search(hashb, res);
     console.log('bernie');
-    res.send(data);
 });
 
 app.get('/api/getAllTweets/trump', function(req, res) {
-    var data = es.search(hasht);
+    var data = es.search(hasht, res);
     console.log('trump');
-    res.send(data);
+});
+
+app.get('/api/getAllTweets/trump_loser', function(req, res) {
+    var data = es.search(hashtl, res);
+    console.log(data);
 });
 
 app.get('/api/getAllTweets/general', function(req, res) {
-    var data = es.search_all('*');
+    var data = es.search_all(res);
     console.log('general');
-    res.send(data);
 });
 
 
