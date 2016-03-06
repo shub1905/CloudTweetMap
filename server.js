@@ -3,8 +3,10 @@ var app = express();
 
 app.use(express.static('public'));
 
-app.get('/', function(req, res){
-  res.sendFile(__dirname + '/public/maps.html');
+app.get('/', function(req, res) {
+    // console.log(path.join(__dirname, '/public'));
+    // res.sendFile(path.join(__dirname, '/public/', 'maps.html'));
+    // res.type('html');
 });
 
 app.post('/api', function(req, res) {
