@@ -26,14 +26,13 @@ app.get('/api/getAllTweets/trump', function(req, res) {
 
 app.get('/api/getAllTweets/trump_loser', function(req, res) {
     var data = es.search(hashtl, res);
-    console.log(data);
+    console.log('trump anti');
 });
 
-app.get('/api/getAllTweets/general', function(req, res) {
+app.get('/api/getAllTweets/elections', function(req, res) {
     var data = es.search_all(res);
     console.log('general');
 });
-
 
 app.listen(3000, function() {
     console.log('Example app listening on port 3000!');

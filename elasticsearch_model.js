@@ -88,4 +88,5 @@ function get_id(tweet) {
 }
 
 module.exports.search = search;
+module.exports.search_all = search_all;
 module.exports.index = index_es;
