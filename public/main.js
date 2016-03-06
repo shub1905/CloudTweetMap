@@ -51,11 +51,11 @@ $.get("/api/getAllTweets/"+category,function(data, status){
     pointArray = [];
     for (i in data){
         //console.log(data[i]['geo']['coordinates']['0']);
-    var tweetLocation = new google.maps.LatLng(data[i]['geo']['coordinates']['0'],data[i]['geo']['coordinates']['1']);
+    var tweetLocation = new google.maps.LatLng(data[i]['lat'],data[i]['long']);
         //console.log(tweetLocation);
         pointArray.push(tweetLocation);
     }
-        google.maps.event.addDomListener(window, 'load', heatMapInitialize());
+        heatMapInitialize();
 });
 
 
