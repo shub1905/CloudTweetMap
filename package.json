@@ -8,6 +8,7 @@
     "express": "^4.13.4",
     "http": "^0.0.0",
     "httpdispatcher": "^1.0.0",
+    "socket.io": "^1.4.5",
     "twit": "^2.2.2"
   },
   "devDependencies": {},

@@ -3,11 +3,11 @@ var app = express();
 
 app.use(express.static('public'));
 
-app.get('/', function(req, res) {
-    res.send('Hello World!');
+app.get('/', function(req, res){
+  res.sendFile(__dirname + '/public/maps.html');
 });
 
-app.post('/', function(req, res) {
+app.post('/api', function(req, res) {
     res.send('Got a POST request');
 });
 
