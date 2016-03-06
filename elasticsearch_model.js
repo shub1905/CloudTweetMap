@@ -20,7 +20,7 @@ function es_response_data_list(data) {
     var hits = data.hits.hits;
     var data_new = [];
     for (var i = 0; i < hits.length; i++) {
-        data_new.push({"lat":hits[i].geo.coordinates[0], "long": hits[i].geo.coordinates[1]}})
+        data_new.push({ "lat": hits[i].geo.coordinates[0], "long": hits[i].geo.coordinates[1] });
     }
     return data_new;
 }
@@ -31,17 +31,21 @@ function search(hashtaglist) {
     for (var i = 0; i < hashtaglist.length; i++) {
         new_hashes.push(hashtaglist[i].toLowerCase());
     }
-    console.log(new_hashes);
+    // console.log(new_hashes);
 
     var query = query_default;
     query.query.terms = { 'entities.hashtags.text': new_hashes };
-    console.log(query.query.terms);
+    // console.log(query.query.terms);
 
     client.search({
         index: index,
         body: query
     }, function(error, response) {
-        console.log(response);
+        if (error) {
+            console.log(error);
+        } else {
+            return es_response_data_list(response);
+        }
     });
 }
 
@@ -56,17 +60,19 @@ function search_all() {
         index: index,
         body: query
     }, function(error, response) {
-        console.log(response);
-        console.log(error);
+        if (error) {
+            console.log(error);
+        } else {
+            return es_response_data_list(response);
+        }
     });
 }
 
 function index_es(body_) {
-    if (body_.geo == null)
-    {
-        console.log('missing location');
+    if (body_.geo == null) {
         return;
     }
+    console.log('found location');
     client.index({
         index: index,
         id: get_id(body_),
@@ -83,5 +89,3 @@ function get_id(tweet) {
 
 module.exports.search = search;
 module.exports.index = index_es;
-
-search(['VoteTrump', 'MakeAmericaGreatAgain', 'Trump2016']);

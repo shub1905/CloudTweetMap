@@ -18,7 +18,5 @@ var T = new Twit({
 var stream = T.stream('statuses/filter', { track: '#VoteTrump,#MakeAmericaGreatAgain,#Trump2016,#MakeDonaldDrumpfAgain,#DonaldDrumpf,#FeelTheBurn,#Bernie2016,#Hilary2016,#IAmWithHer,#Elections2016,#GOPDebate,#repulican,#democrat'});
 
 stream.on('tweet', function(tweet, error) {
-    console.log(error);
-    console.log('filter');
     es.index(tweet);
 });
