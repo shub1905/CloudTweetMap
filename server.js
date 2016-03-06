@@ -35,6 +35,6 @@ app.get('/api/getAllTweets/elections', function(req, res) {
     console.log('general');
 });
 
-app.listen(3000, function() {
-    console.log('Example app listening on port 3000!');
+app.listen(process.env.PORT, function() {
+    console.log('Example app listening on port');
 });
