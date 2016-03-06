@@ -15,7 +15,7 @@ var T = new Twit({
     timeout_ms: config.timeout
 })
 
-var stream = T.stream('statuses/filter', { track: '#VoteTrump,#MakeAmericaGreatAgain,#Trump2016,#MakeDonaldDrumpfAgain,#DonaldDrumpf,#FeelTheBurn,#Bernie2016,#Hilary2016,#IAmWithHer,#Elections2016,#GOPDebate,#repulican,#democrat'});
+var stream = T.stream('statuses/filter', { track: '#VoteTrump,#MakeAmericaGreatAgain,#Trump2016,#MakeDonaldDrumpfAgain,#DonaldDrumpf,#FeelTheBurn,#Bernie2016,#Hilary2016,#IAmWithHer,#Elections2016,#GOPDebate,#repulican,#democrat' });
 
 stream.on('tweet', function(tweet, error) {
     es.index(tweet);

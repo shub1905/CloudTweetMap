@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
-var es = require('./elasticsearch_model');
+var es = require('./elasticsearch_model.js');
+var es = require('./twitter.js');
 
 
 app.use(express.static('public'));

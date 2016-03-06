@@ -4,6 +4,7 @@
   "description": "Spatial Distribution of Tweets",
   "main": "server.js",
   "dependencies": {
+    "cron": "^1.1.0",
     "elasticsearch": "^10.1.3",
     "express": "^4.13.4",
     "http": "^0.0.0",
