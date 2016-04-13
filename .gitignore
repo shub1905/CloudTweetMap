@@ -48,3 +48,6 @@ temp/
 
 # alchemy files
 api_key.txt
+
+# AWS Files
+aws_config.json
