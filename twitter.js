@@ -10,12 +10,9 @@ var config = JSON.parse(config_raw).twitter;
 
 aws.config.loadFromPath(./aws_config.json);
 
-var sqs = aws.SQS();
-var params = {
-  QueueName: "tweets"
-};
+var sqs = new aws.SQS({region:'us-east-1c'});
 
-sqs.createQueue(params, function(err, data) {
+/*sqs.createQueue(params, function(err, data) {
    if (err)
 	console.log(err, err.stack); // an error occurred
    else     
@@ -24,12 +21,9 @@ sqs.createQueue(params, function(err, data) {
    data = {
     QueueUrl: "https://queue.amazonaws.com/012345678910/MyQueue"
    }
-*/   
+   
  });
 
-var params = {
-  QueueName: 'tweets'
-};
 sqs.getQueueUrl(params, function(err, data) {
   if (err) console.log(err, err.stack); // an error occurred
   else    {
@@ -38,7 +32,7 @@ sqs.getQueueUrl(params, function(err, data) {
 }
 
 });
-
+*/
 var T = new Twit({
     consumer_key: config.consumer_key,
     consumer_secret: config.consumer_secret,
@@ -53,7 +47,7 @@ stream.on('tweet', function(tweet, error) {
     if(tweet.geo!=null) {
     var params = {
     MessageBody: JSON.stringify(tweet),
-    QueueUrl: queueUrl
+    QueueUrl: "queueUrl"
   };
   sqs.sendMessage(params, function(err, data) {
     if (err) common.logError(err, err.stack); // an error occurred
@@ -61,5 +55,4 @@ stream.on('tweet', function(tweet, error) {
   });  
 }
     //es.index(tweet);
-}
 });
