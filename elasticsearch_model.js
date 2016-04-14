@@ -11,7 +11,7 @@ var query_default = {
     "size": 1000,
     "query": {
         "terms": {
-            "entities.hashtags.text": []
+            "text": []
         }
     }
 }
@@ -21,7 +21,7 @@ function es_response_data_list(data) {
     var data_new = [];
     for (var i = 0; i < hits.length; i++) {
         // console.log(hits[i]);
-        data_new.push({ "lat": hits[i]._source.geo.coordinates[0], "long": hits[i]._source.geo.coordinates[1] });
+        data_new.push({ "lat": hits[i]._source.geo.coordinates[0], "long": hits[i]._source.geo.coordinates[1], "sentiment" : hits[i]._source.sentiment});
     }
     return data_new;
 }
@@ -34,7 +34,7 @@ function search(hashtaglist, res) {
     }
 
     var query = query_default;
-    query.query.terms = { 'entities.hashtags.text': new_hashes };
+    query.query.terms = { 'text': new_hashes };
     var ret_value;
 
     client.search({

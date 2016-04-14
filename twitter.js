@@ -21,7 +21,7 @@ var T = new Twit({
 })
 
 // var stream = T.stream('statuses/filter', { track: '#VoteTrump,#MakeAmericaGreatAgain,#MakeAmericaGrateAgain,#Trump2016,#MakeDonaldDrumpfAgain,#DonaldDrumpf,#FeelTheBern,#Bernie2016,#Hilary2016,#IAmWithHer,#Elections2016,#GOPDebate,#repulican,#democrat,#HilarySoQualified,trump,bernie,hilary,president,elections,nuclear' });
-var stream = T.stream('statuses/filter', { locations: [-180, -85, 180, 85] });
+var stream = T.stream('statuses/filter', { locations: [-180, -85, 180, 85], language: 'en'});
 // var stream = T.stream('statuses/filter', { locations: [-122.75,36.8,-121.75,37.8] });
 
 stream.on('tweet', function(tweet, error) {
@@ -32,9 +32,9 @@ stream.on('tweet', function(tweet, error) {
         };
         sqs.sendMessage(params, function(err, data) {
             if (err) console.log('Errror:' + err); // an error occurred
-            else console.log('Sent'); // successful response
+            else console.log('Sent to SQS'); // successful response
         });
     }
 });
 
-// sqs_sns.st();
+sqs_sns.st();
