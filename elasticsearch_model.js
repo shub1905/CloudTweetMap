@@ -4,7 +4,7 @@ var client = new elasticsearch.Client({
     log: 'error'
 });
 
-var index = 'twitter_geolocations';
+var index = 'trial_sqs';
 var type = 'tweet';
 
 var query_default = {

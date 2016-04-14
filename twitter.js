@@ -2,10 +2,11 @@ var Twit = require('twit');
 var fs = require('fs');
 var http = require('http');
 var aws = require('aws-sdk');
+var sqs_sns = require('./aws_sqs_sns.js')
 
 var config_raw = fs.readFileSync('config.json');
 var config_json = JSON.parse(config_raw);
-var config_twitter = config_json.twitter;
+var config = config_json.twitter;
 var queueUrl = config_json.aws.queueUrl;
 
 aws.config.loadFromPath('./aws_config.json');
@@ -30,8 +31,10 @@ stream.on('tweet', function(tweet, error) {
             QueueUrl: queueUrl
         };
         sqs.sendMessage(params, function(err, data) {
-            if (err) common.logError(err, err.stack); // an error occurred
-            else common.log(data); // successful response
+            if (err) console.log('Errror:' + err); // an error occurred
+            else console.log('Sent'); // successful response
         });
     }
 });
+
+// sqs_sns.st();

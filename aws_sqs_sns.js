@@ -1,4 +1,3 @@
-var aws = require('aws-sdk');
 var fs = require('fs');
 var Consumer = require('sqs-consumer');
 var AlchemyAPI = require('./alchemyapi.js');
@@ -8,10 +7,15 @@ var elastic = require('./elasticsearch_model.js');
 
 var alchemyapi = new AlchemyAPI();
 
-function sentiment_analysis(tweet_txt) {
-    alchemyapi.sentiment("text", tweet_txt, {}, function(response) {
-        console.log("Sentiment: " + JSON.stringify(response["docSentiment"]["type"]));
-        return response["docSentiment"]["type"];
+function sentiment_analysis(tweet) {
+    alchemyapi.sentiment("text", tweet.text, {}, function(response) {
+        if (response.status == 'OK') {
+            var sentiment = response["docSentiment"]["type"];
+            tweet.sentiment = sentiment;
+            //sns_push(tweet);
+            console.log(JSON.stringify(tweet.id));
+            elastic.index(tweet);
+        }
     });
 }
 
@@ -39,6 +43,9 @@ function consumer_sqs_start() {
     app.start();
 }
 
-function consumer_sqs_close() {
+function consumer_sqs_stop() {
     app.stop();
 }
+
+module.exports.st = consumer_sqs_start
+module.exports.stop = consumer_sqs_stop
