@@ -10,33 +10,29 @@ var config_raw = fs.readFileSync('config.json');
 var config = JSON.parse(config_raw).twitter;
 
 // aws.config.loadFromPath('./aws_config.json');
+var sqs = new aws.SQS({region:'us-east-1c'});
 
-// var sqs = aws.SQS();
-// var params = {QueueName: "tweets"};
+/*sqs.createQueue(params, function(err, data) {
+   if (err)
+	console.log(err, err.stack); // an error occurred
+   else     
+	console.log(data);           // successful response
+ /*  
+   data = {
+    QueueUrl: "https://queue.amazonaws.com/012345678910/MyQueue"
+   }
+   
+ });
 
-// sqs.createQueue(params, function(err, data) {
-//    if (err)
-// 	console.log(err, err.stack); // an error occurred
-//    else     
-// 	console.log(data);           // successful response
-//  /*  
-//    data = {
-//     QueueUrl: "https://queue.amazonaws.com/012345678910/MyQueue"
-//    }
-// */   
-//  });
+sqs.getQueueUrl(params, function(err, data) {
+  if (err) console.log(err, err.stack); // an error occurred
+  else    {
+ queueUrl = data;	
+ console.log(data);           // successful response
+}
 
-// var params = {QueueName: 'tweets'};
-
-// sqs.getQueueUrl(params, function(err, data) {
-//   if (err) console.log(err, err.stack); // an error occurred
-//   else    {
-//  queueUrl = data;	
-//  console.log(data);           // successful response
-// }
-
-// });
-
+});
+*/
 var T = new Twit({
     consumer_key: config.consumer_key,
     consumer_secret: config.consumer_secret,
