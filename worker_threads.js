@@ -1,21 +1,21 @@
 var Worker = require('webworker-threads').Worker;
- 
+
 // You may also pass in a function: 
-var worker = new Worker(function(){
-  postMessage("I'm working before postMessage('ali').");
-  this.onmessage = function(event) {
-    postMessage('Hi ' + event.data);
-    // self.close();
-  };
+var worker = new Worker(function() {
+    // postMessage("I'm working before postMessage('ali').");
+    this.onmessage = function(event) {
+        postMessage('Hi ' + event.data);
+    };
 });
+
 worker.onmessage = function(event) {
-  console.log("Worker said : " + event.data);
+    console.log("Worker said : " + event.data);
 };
 
-
-
-function worker_call(msg) {
-	worker.postMessage(msg);
+function close_worker() {
+    worker.close();
 }
 
-module.exports.call = worker_call;
+function worker_call(msg) {
+    worker.postMessage(msg);
+}

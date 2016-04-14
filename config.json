@@ -10,5 +10,9 @@
 	"google": 
 	{
 		"api_key": "AIzaSyADcVtUg-MWSSQRNWjAmaqrQBGqhN9SH8k"
+	},
+	"aws":
+	{
+		"queueUrl" : "https://sqs.us-east-1.amazonaws.com/721912020616/twitter_sqs"
 	}
 }
